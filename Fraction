@@ -1,0 +1,61 @@
+public class fraction {
+    int n, d;
+	fraction(int num, int del)
+	{
+		n = num;
+		d = del;
+	}
+	
+    public String toString()
+    {
+    	return  n + "/" + d;
+    }
+    
+    public fraction mul(fraction q)
+    {
+        fraction s = new fraction (n * q.n, d * q.d);
+        s.Simplify();
+        return s;
+    }
+    
+    public fraction add(fraction q)
+    {
+    	int nn = q.n;
+		int dd = q.d;
+    	n = n * dd;
+        nn = nn * d;
+        d = d * dd;
+        n = n + nn;
+    	fraction a = new fraction(n,d);
+    	a.Simplify();
+    	return a;
+    
+    }
+    
+    public void Simplify()
+    {
+    	int p1 = Math.abs(n);
+    	int p2 = Math.abs(d);
+    	if (p1!=0)
+    	{
+        	while (p1!=p2)
+        	{
+        		if (p1>p2)
+        		{
+        			p1 = p1 - p2;
+        		}
+        		else
+        		{
+        			p2 = p2 - p1;
+        		}
+        	}
+    	}
+    	else
+    	{
+    		p1=d;
+    	}
+    	n = n / p1;
+        d = d / p1;
+      }
+	
+}
